@@ -1,0 +1,783 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+%\usepackage {tikz}
+\usepackage{tkz-graph}
+\GraphInit[vstyle = Shade]
+\tikzset{
+  LabelStyle/.style = { rectangle, rounded corners, draw,
+                        minimum width = 2em, fill = yellow!50,
+                        text = red, font = \bfseries },
+  VertexStyle/.append style = { inner sep=5pt,
+                                font = \normalsize\bfseries},
+  EdgeStyle/.append style = {->, bend left} }
+\usetikzlibrary {positioning}
+%\usepackage {xcolor}
+\definecolor {processblue}{cmyk}{0.96,0,0,0}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Short title]{Gestion des bases de donn\'ees} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Pr\'erequis \`a la gestion des Bases} % Your name
+\institute[Sorbonne] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Panth\'eon Sorbonne\\ % Your institution for the title page
+\medskip
+}
+\date{2023-2024} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Plan} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+
+\section{D\'efinitions}
+\begin{frame}{C'est quoi une donn\'ee?:}
+    \begin{itemize}
+        \item Wikip\'edia d\'efinira la donn\'ee comme une repr\'esentation d'une information dans un programme  ;
+        \item c'est une information servant de point de d\'epart \`a la r\'esolution d'un probl\`eme
+        \item c'est la repr\'esentation d'une information en vue d'un traitememt automatique (machine learning en anglais)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{La base donn\'ees qu'est ce que c'est?}
+ \begin{itemize}
+        \item la base de donn\'ees peut \^etre definie comme une collection de donn\'ees relative \`a une grande fonction au sein d'un organisme (entreprise,universit\'e...) mise en commun \`a la disposition de tous les utilisateurs (humain, ou application logicielle) impliqu\'ees dans cette fonction.   
+        \item Afin d'assurer des bases de donn\'ees auton\^omes les fonctions consid\'er\'ees sont suppos\'ees \^etre aussi  vastes.
+        \item Dans une entreprise ces fonctions peuvent \^etre l'activite commerciale, la gestion du personnel, le suivi de la chaine de production ect.
+        \item Dans une universit\'e la scolarit\'e, la gestion du personnel la planification de l'enseignement les stages et les projets de fin d'\'etude.
+
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{La base donn\'ees qu'est ce que cest?}
+
+  \begin{itemize}
+   \item Pour la biblioth\`eque de l'universit\'e la gestion des ouvrages.
+        \item Les donn\'ees d'une base de donn\'ees sont n\'ecessairement organis\'ees sous la forme d'objets avec leur description ainsi que les liens pouvant exister entre elles.
+        \item Les donn\'ees d'une base sont toujours soumis \`a certaines conditions normes contraintes d'integrit\'e.
+        \item Une base de donn\'ees est dite dans un \'etat coh\'erent, si l'ensemble de ses donn\'ees respecte  contraintes d'integrit\'e dans le cas contraire elle est incoh\'erente. 
+    \end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{La base de donn\'ees qu'est ce que c'est?}
+La notion de base de donn\'ees fournit une gestion centralis\'ee des donn\'ees d'un organisme. Cette propri\'et\'e implique de nombreux avantages;
+\begin{itemize}
+        \item La redondance des donn\'ees peut \^etre supprim\'ee:
+        \newline Comme les donn\'ees sont rassembl\'ees, il est plus simple d'utiliser les m\'ethodes ad\'equates afin de faire disparaitre la redondance; cela implique une r\'eduction du co\^ut de stockage et de saisie dans les grandes entreprises.
+        \item l'incoh\'erence d\^ue aux donn\'ees dupliqu\'ees est \'ecart\'ees:
+        \newline la redondance \'etant exclue toute mise \`a jour des donn\'ees ne puit se faire qu'en un seul endroit de la base. Il y aura donc pas deux valeurs diff\'erentes.
+        \item La gestion des donn\'ees devient plus adapt\'ee:
+        \newline En effet, la protection des donn\'ees peut \^etre centralis\'ee et mise sous la tutelle d'une unique personne.
+    \end{itemize}
+    \end{frame}
+\begin{frame}{Le syst\`eme de gestion de base de donn\'ees}
+Le syst\`eme de gestion de bases est consid\'er\'e comme un logiciel qui cr\'ee et g\`ere les bases de donn\'ees. Il offre aux utilisateurs les fonctions de base suivantes:
+
+    \begin{itemize}
+        \item Un language de description de donn\'ees (LDD)
+        \newline Cela est en vue de cr\'eer la structure de la base ainsi que les contraintes d'integrit\'e impos\'ees.
+        \item Un langage de manipulation des donn\'ees (LMD)
+        \newline Cela permettant d'interroger la base de donn\'ees ( \`a l'aide de requ\^etes) et aussi d'effectuer des mises \`a jour sur les donn\`ees(insertion, modification et suppression).
+        \item Le programmeur est d\'echarg\'e d'une grande partie de la programmation.
+        \newline Exemple en utilisant le langage sql, il suffit d'\'ecrire SELECT*FROM CLIENT NATURAL JOIN COMMANDE 
+        \end{itemize}
+        \end{frame}
+        
+        \begin{frame}{Le syst\`eme de gestion de base de donn\'ees}
+            
+    
+            
+    \begin{itemize}
+    
+        \item Le code des applications est notablement r\'eduit et devient plus lisible
+        \item La formulation des requ\^etes est simplifi\'ee.
+        \newline la SGBD joue le r\^ole d'interface entre les applications logicielles et  la base de donn\'ees
+        
+\begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_croauis.PNG}
+\end{figure}
+\item A1,A2,...An d\'esignent les applications logicielles
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Principe g\'en\'eral de la SGBD}
+  \begin{itemize}
+    \item L'application transmet sa requ\^ete au SGBD sous la forme d'une commande conforme au langage offert.
+    \newline Exemple: Quels sont les articles dont la quantit\'e en stock est inf\'erieure ou \'egale \`a 10 s'exprime par le langage sql
+   SELECT* FROM ARTICLE WHERE quantite.stock $\le10$;
+    \item la SGBD \'etudie la commande afin de d\'eterminer l'ensemble de donn\'ees n\'ecessaires \item \`a l'\'evaluation
+    \item Effectue des acc\`es disque en vue de ramener ces donn\'ees en m\'emoire centrale
+    \item Traite ces donn\'ees afin de d\'eterminer la r\'eponse \`a la requ\^ete
+    \item Renvoie enfin le r\'esultat obtenu \`a l'application concern\'ee
+ \end{itemize}
+\end{frame}
+\begin{frame}{Type de soumission de la requ\^ete}
+Il existe deux types diff\'erentes pour soumettre la requ\^ete au SGBD
+\begin{itemize}
+    \item En mode int\'eractif
+    \newline l'utilisateur humain tape la commande \`a l'aide de son clavier et la transmet au SGBD.
+    \item Int\'egration dans un programme
+    \newline Dans ce cas, la commande est plac\'ee au sein d'un programme; pour l'\'evaluer, il faut ex\'ecuter ce dernier. Le langage employ\'e dans l'\'ecriture du code est appel\'e langage hote.
+    \item La premi\`ere possibilit\'e est int\'eressante envers les requ\^etes occasionnelles alors que la seconde pour les requ\^etes r\'eutilisables
+\end{itemize}
+    
+
+    
+\end{frame}
+\section{Mod\`ele de donn\'ees et type de SGBD}
+\begin{frame}{C'est quoi un mod\`ele de donn\'ees:}
+    \begin{itemize}
+        \item Ensemble de concepts permettant d'\'etablir une description formelle de toutes les donn\'ees de la base cr\'e\'ee ;
+        \item Son objectif principal est d'organiser les donn\'ees sous forme d'objet de m\^eme esp\`ece avec leurs caract\'eritiques et d'exprimer aussi les liens pouvant exister entre eux.
+        \item les mod\`eles de donn\'ees diff\`erent principalement par les types de donn\'ees, la mani\`ere d'\'etablir les liens et les notations mises en jeu.
+    \end{itemize}
+\end{frame}
+\begin{frame}{les diff\'erents mod\`eles de donn\'ees:}
+    \begin{itemize}
+        \item les mod\`eles hi\'erarchique et r\'eseau;
+        \newline  Ils correspondent \`a la premi\`ere g\'en\'eration de SGBD.
+        Les SGBD type r\'eseau sont plus puissants que celles type hi\'erarchique et ont \'et\'e mis en place afin am\'eliorer ces derni\`eres
+        \item Le mod\`ele relationel;
+        \newline C'est la nouvelle g\'en\'eration de base de donn\'ees introduit en 1969 par Codd IBM et commercialis\'e en 1980
+        \item Les mod\`eles objets-relationnels et objets;
+        \newline C'est la trois\`eme g\'en\'eration. Elles ont \'et\'e introduites afin de pouvoir g\'erer les donn\'ees complexes et se sont impos\'ees en 1990. C'est une extension du mod\`ele relationnel
+       
+    \end{itemize}
+\end{frame}
+\section{Mod\`ele de donn\'ees de la premi\`ere g\'en\'eration}
+\begin{frame}{Le mod\`ele hi\'erarchique}
+Les notions de bases sont le segment, les champs, l'occurence d'un segment, les cl\'es et le lien
+    \begin{itemize}
+        \item Le segment repr\'esente un ensemble d'objets de m\^eme esp\`ece
+        \item Une occurence d'un segment est un objet particulier
+        \item les champs de segment repr\'esentent les caract\'eristiques permettant de d\'ecrire les objets
+        \item La cl\'e d'un segment est un ensemble de champs dont les valeurs permettent de distinguer ses occurences
+    \end{itemize}
+    \end{frame}
+    \newpage
+\begin{frame}
+\begin{figure}[h]
+\centering	
+ \includegraphics[width=0.7\textwidth]{Capture_arti.PNG}
+\end{figure}
+
+\end{frame}
+    \begin{frame}
+        
+ \begin{itemize}
+   \item Le graphique repr\'esente un segment. Dans ce graphique, le segment ARTICLE mod\'elise l'ensemble des articles \`a g\'erer.
+    \item Il a pour champs: code, d\'esignation, couleur, prix-unitaire et la quantit\'e.tock.  
+ \item Le premier repr\'esente une cl\'e
+    \item Des occurences possibles peuvent \^etre (en supposant que les objets sont des v\^etements):(10, pantalon, noir, 200, 40 );(11, veste, bleu, 400,30),ect.
+\end{itemize}
+   \end{frame}
+   
+   \begin{frame}{Le mod\`ele r\'eseau}
+Le mod\`ele hi\'erarchique est confront\'e \'a deux inconv\'enients
+
+    \begin{itemize}
+        \item  D'une part, il ne permet pas de g\'erer les relations n:n
+        \item D'autre part, on ne peut mentionner au plus une liaison entre deux segments
+        \item Pour pallier ces inconv\'enients, on a introduit le mod\`ele r\'eseau
+        
+    \end{itemize}
+    \end{frame}
+      \begin{frame}
+        
+
+    \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_reseaux.PNG}
+\end{figure}
+
+
+    \end{frame}
+    \begin{frame}
+        
+   
+ \begin{itemize}
+        \item  A,B: sont appel\'es record ou type d'enregistrement et corrrespondent au segment de mod\`ele hi\'erarchique
+        \item la fl\`eche repr\'esente un lien nomm\'e ici set et poss\`ede la m\^eme signification que dans le mod\`ele hi\'erarchique
+        \item A est qualifi\'e  propri\'etaire du set et B, membre
+        \item Avec ce mod\`ele les deux repr\'esentations suivantes sont possibles
+    \end{itemize}
+    \end{frame}   
+\begin{frame}
+        
+
+\begin{figure}[h]
+\centering	
+\includegraphics[width=0.5\textwidth]{Capture_ZE}
+\end{figure}
+
+\begin{figure}[h]
+\centering	
+\includegraphics[width=0.25\textwidth]{Capture_Z2}
+\end{figure}
+\end{frame}
+\begin{frame}
+        
+   
+ \begin{itemize}
+        \item Dans le premier sch\'ema, au type d'enregistrement C peuvent aboutir plusieurs fl\`eches
+        \item Dans le second, on peut placer autant de fl\`eches que l'on veut entre A et B (distingu\'ees \'evidemment par des noms diff\'erents
+        
+    \end{itemize}
+    \end{frame}
+    \section{Les mod\`eles de deuxi\`eme g\'en\'eration}
+\begin{frame}{C'est quoi une base de donn\'ees relationnelle:}
+    \begin{itemize}
+        \item C'est une  base de donn\'ees o\`u l'information est organis\'ee dans des tableaux \`a deux dimensions  ;
+        \item Ces dimensions sont appel\'ees relations ou tables.
+        \item Selon le mod\`ele de Edgar F. Codd de 1970, une base de donn\'ees consiste en une  ou plusieurs relations.
+        \item Les lignes de ces relations sont appel\'ees des nuplets ou enregistrements.
+        \item Les colonnes de ces relations sont appel\'ees des attributs.
+        \item En pratique, presque tous les  syst\`emes relationels utilisent le langage SQL pour interroger les bases de donn\'ees.
+        \item Un tel langage permet  de demander des op\'erations d'alg\`ebre relationnelle telles que l'intersection, la s\'election et la jointure
+        \end{itemize}
+        \end{frame}
+       
+\begin{frame}{C'est quoi une base de donn\'ees relationnelle :}
+    \begin{itemize}
+        \item Le mod\`ele  de donn\'ees relationnel repose sur une th\'eorie rigoureuse bien qu'adoptant des principes simples. ;
+        \item La table relationnelle  est la structure de donn\'ees de base qui contient des enregistrements appel\'es aussi \og lignes \fg
+        \item Une table est compos\'ee de colonnes permettant de d\'ecrire ces enregistrements
+    \end{itemize}
+\end{frame}
+\begin{frame}{Les tables et les donn\'ees}
+\begin{itemize}
+        \item Consid\'erons la figure suivante qui pr\'esente deux tables relationnelles permettant de stocker des informations relatives aux compagnies, aux pilotes et le fait qu'un pilote soit embauch\'e par une compagnie:
+       
+    \end{itemize}
+ 
+    \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_gest2.PNG}
+\end{figure}
+
+   \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_gest3.PNG}
+\end{figure}
+    \end{frame}   
+        
+\begin{frame}{Les cl\'es}
+\begin{itemize}
+\item La cl\'e primaire d'une table est l'ensemble minimal de colonnes qui permet d'identifier de mani\`ere unique chaque enregistrement.
+\item Dans le cas qui a \'et\'e \'ennonc\'e pr\'ec\'edemment, les colonnes " cl\'es primaires" sont " comp " et " brevet " .
+\item La colonne repr\'esente le code de la compagnie et la colonne brevet d\'ecrit le num\'ero du brevet.
+\item Une cl\'e est dite "candidate", si elle peut se substituer \`a la cl\'e primaire \`a tout instant.
+\item Une table peut contenir plusieurs cl\'es candidates ou aucune.
+\item Dans notre exemple, les colonnes nomComp et pseudo peuvent \^etre des cl\'es candidates si on suppose qu'aucun homonyme n'est permis.
+\end{itemize}
+\end{frame}  
+\begin{frame}{ Les cl\'es}
+\begin{itemize}
+    \item Une cl\'e \'etrang\`ere r\'ef\'erence dans la majorit\'e des cas une cl\'e primaire d'une autre table (sinon une cl\'e candidate sur laquelle un index unique aura \'et\'e d\'efini). Une cl\'e \'etrang\`ere est compos\'ee d'une ou plusieurs colonnes. Une table peut contenir plusieurs cl\'es \'etrang\`eres ou aucune.
+    \item Dans le cas suscit\'e, la colonne compa( est une cl\'e \'etran\`gere, car elle permet de r\'ef\'erencer un enregistrement unique de la table "Compagnie" via la cl\'e primaire comp.
+    `\item Le mod\`ele relationnel est ainsi fondamentalement bas\'e sur les valeurs.
+    \item Les associations entre tables sont toujours binaires et assur\'ees par les cl\'es \'etrang\`eres.
+    \item Les th\'eoriciens consid\`erent celles-ci comme des pointeurs logiques
+    \item Les cl\'es primaires et \'etrang\`eres seront d\'efinies dans les tables en SQL \`a l'aide de contraintes.
+ \end{itemize}
+\end{frame}
+
+\section{Notions de base du langage SQL}
+\begin{frame}{Particularit\'es de SQL}
+\begin{itemize}
+\item Ce langage traite les donn\'ees au travers de tables.
+\item la table SQL est la m\^eme que celle du mod\`ele relationnel.
+\item par ailleurs ici la colonne est appel\'e attribut et la ligne tuple.
+\item la table SQL accepte la duplication des lignes \`a l'inverse de son homologue le mod\`ele relationnel
+\item avec SQL le nom des \'el\'ements cr\'e\'es (tables, colonnes, ect) sont form\'es de lettres mais aussi  de symboles suppl\'ementaires (chiffres et caract\`eres sp\'eciaux).
+\item SQL ne fait pas de diff\'erence entre les lettres majuscules et minuscules concernant les noms et mots cl\'es.
+\item Pour l'ajout de commentaire sur une ligne on utilise - - et sur plusieurs lignes /*et*/
+
+\end{itemize}
+    
+\end{frame}
+\begin{frame}{Particularit\'es de SQL}
+\begin{itemize}
+\item A titre d'exemple :
+\newline - -Liste des articles en bleu
+\newline SELECT *FROM ARTICLE - - Intruction SQL
+\newline WHERE couleur = 'bleu'
+\item Chaque instruction SQL peut \^etre saisie sur une ou plusieurs lignes et termin\'ee par un point virgule.
+\item toute partie d'une instruction plac\'ee entre crochet n'est pas obligatoire.
+\item Les options plac\'ees entre accolades et s\'epar\'ees par la barre verticale, exige la s\'election et la pr\'esence d'une seule option
+\end{itemize}
+\end{frame}
+\begin{frame}{Types de donn\'ees}
+Chaque nom de colonne de toute table doit disposer d'un type de donn\'ees;
+\newline Ce dernier d\'etermine:
+\begin{itemize}
+
+\item L'ensemble des valeurs que peut prendre la colonne;
+\item Les op\'erations permises;
+\item La taille de l'emplacement utilis\'e pour le stockage de chaque valeur
+\item Le format par d\'efaut employ\'e lors de l'affichage
+\item Les options plac\'ees entre accolades et s\'epar\'ees par la barre verticale, exige la s\'election et la pr\'esence d'une seule option
+\end{itemize}
+\end{frame}
+\section{MySQL}
+\begin{frame}{C'est quoi MySQL}
+\begin{itemize}
+    \item MySQL est une SGBD qui a \'et\'e d\'evelopp\'e en C et C++ par une \'equipe su\'edoise nonmm'ee TcX, dans l'objectif d'am\'eliorer le logiciel mSQL.
+    \item La premi\`ere version est apparue en mai 1995.
+    \item Elle fut distribuée par MySQL AB(Uppsala,Su\`ede fond\'ee par David Axmak, Allan Larson et Michael Widenius
+    \item La version "production" de MySQL doit sa popularit\'e \`a son caract\`ere open source, ses fonctionnalit\'es de plus en plus riches, ses performances, son ouverture \'a tous les principaux langages du march\'e, son fonctionnement sur les syst\`emes les plus courants et sa facilit\'e d'utilisation pour les applications Web de taille moyenne.
+\end{itemize}
+
+    
+\end{frame}
+\begin{frame}{SQL SELECT}
+L'utilisation basique de cette commande s'effectue de la mani\`ere suivante
+
+\begin{itemize}
+    \item \textbf{SELECT $non.du.champ$ FROM $nom.du.tableau$}
+    \item Cette requ\^ete va s\'electionner (SELECT) le champ "nom.du.champ"provenant (FROM) du tableau appel\'e "nom.du.tableau
+    \item \textbf{Table "client"}
+        \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_exemple1.PNG}
+\end{figure}
+
+    
+\end{itemize}    
+\end{frame}
+\begin{frame}{SQL SELECT}
+\begin{itemize}
+    \item Pour avoir la liste de toutes les villes des clients, il suffit d'effectuer la requ\^ete SQL ci-dessous:
+    \item \textbf{SELECT $ville$ FROM $client$}
+    \item on obtient donc le r\'esultat ci dessous:
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_exemple2.PNG}
+\end{figure}
+    
+    \item Pour avoir plus de colonne, il faut s\'eparer les noms avec une virgule
+    \item \textbf{SELECT $prenom$,$nom$ FROM client}
+\end{itemize}
+\end{frame}
+\begin{frame}{SQL SELECT}
+\begin{itemize}
+    \item Ce qui permet d'obtenir le r\'esultat suivant
+              \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_exemple3.PNG}
+ \end{figure}
+ \item Pour obtenir plusieurs colonnes, il faut simplement utiliser le caract\`ere "*"
+ \item \textbf{SELECT * FROM "client"}
+
+\end{itemize}
+\end{frame}
+\begin{frame}{SQL SELECT}
+              \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_exemple4.PNG}
+ \end{figure}
+ \end{frame}
+ \begin{frame}
+ \begin{itemize}
+     \item Une requ\^ete SQL peut devenir assez longue .Juste \`a titre informatif, voici une requ\^ete SELECT qui poss\`ede presque toutes les commandes possibles:
+     \item \textbf{SELECT}
+     \item \textbf{FROM $table$}
+     \item \textbf{WHERE $condition$}
+     \item \textbf{GROUP BY $expression$}
+     \item \textbf{HAVING $condition$}
+     \item \textbf{{UNION $|\textbf{INTERSECT}|$ EXCEPT }}
+     \item \textbf{ORDER BY $expression$}
+     \item \textbf{LIMIT $count$}
+     \item \textbf{OFFSET $start$}
+ \end{itemize}
+    
+
+
+    
+\end{frame}
+\begin{frame}{Les produits MySQL}
+Les produits de la soci\'et\'es MySQL sont les suivants:
+\begin{itemize}
+\item MySQL Enterprise qui inclut MySQL enterprise Server
+\item MySQL Enterprise Monitor(conole d'administration) MySQL Production Support(le service support);
+\item MySQL Cluster, qui impl\'emente la solution de haute diponibilit\'e (architecture en cluster)
+\item MySQL Embedded Server (SGBD seul)
+\item MySQL connectors, pilotes(drivers) permettant l'acc\`es \`a tout programme.
+\item MySQL Workbench, outil graphique pour d\'eveloppeurs et concepteur
+\item MySQL Fabric, qui permet d'administrer des serveurs en cluster en basculant par exemple un serveur esclave pour devenir  primaire suite \'a un incident sur le serveur principal.
+
+    
+\end{itemize}
+    
+\end{frame}
+\begin{frame}{Licences}
+\begin{itemize}
+\item Deux types de licenses propos\'ees par MySQL
+\item La license GPL qui est enti\`erement gratuite
+\item La license commerciale qui est payante et qui n'est pas copi\'e, modifi\'e, distribu\'e  ou employ\'e pour une utilisation en combinaison avec un serveur web.
+\item MySQL a connu diverses versions de 1999 \`a 2017
+\item Le rythme de mise \`a jour est d'environ tous les 18 \`a 24 mois .
+\item Des versions interm\'ediaires (Milestone puis Release Candidate) apparaisent r\'eguli\`erement entre deux versions de production.
+\end{itemize}
+    
+\end{frame}
+\begin{frame}{Architecture MySQL}
+   \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Capture_offremysql.PNG}
+\end{figure}
+    
+\end{frame}
+ \begin{frame}{Les moteurs de stockage MySQL}
+ La particularit\'e du SGBD MySQL est de pouvoir proposer diff\'erents moteurs de stockage.Le choix sera conditionn\'e par la façon de stocker ou de traiter les donn\'ees de chaque table. Parmi les moteurs natifs lesplus utilis\'es ,citons:
+ 
+ \begin{itemize}
+     \item MyISAM : moteur par d\'efaut ne supportant pas les transaction mais poss\'edant une fonctionnalit'e de recherche de texte.
+     \item InnoDB : Supportant le mode transactionnel et les contraintes r\'ef\'rentielles
+     \item MEMORY(anciennement HEAP):stockage de donne\'ees et index en RAM.Convenant \`a des donn\'ees non persistantes.
+     \item ARCHIVE : Stockage de donn\'ees sous une forme compress\'ees.
+     \item CSV (Comma Separated Value):Stockage de donn\'ees sous forme de fichiers texte dans lesquels la s\'eparation se fait par la virgule
+     \item FEDERATED:Convenant pour les architectures r\'eparties(plusieurs serveurs)
+     \item NDB(Network DataBase): elle convient pour le architectures en clusters
+     
+ \end{itemize}
+ \end{frame}
+\begin{frame}{Notion de Database} 
+MySQL appelle "database" un regroupement logique d'objets (tables, index, vues, d\'eclencheurs, ect) pouvant être stock\'es \'a diff\'erents endroits du disque
+\begin{itemize}
+      \item Pour tous, un utilisateur sera  associ\'e \'a un mot de passe pour pouvoir se connecter et manipuler des tables.
+      \item Pour MySQL, il n'y a pas de notion d'appartenance d'un objet. Un objet appartient \`a une database. Autrement dit, deux utilisateurs distincts se connectant à la m\^eme base, ne pourront pas cr\'eer une table ayant pour nom "Compagnie". Pour se faire,il faudra deux bases diff\'erentes.
+      \item Pour d'autres SGBD (ex:ORACLE), chaque objet appartient \`a un sch\'ema.
+  \end{itemize}
+  \end{frame}
+\begin{frame}{Notion d'h\^ote}
+
+MySQL d\'enomme "host" la machine h\'ebergeant le SGBD. MySQL diff\`ere aussi \`a ce niveau des autres SGBD, car il est possible de distinguer des acc\`es d'un m\^eme utilisateur suivant qu'il se connecte \`a partir d'une machine ou d'un autre. La notion d'identit\'e est bas\'ee sur le couple nom d'utilisateur MySQL(user) C\^ot\'e serveur, machine cliente.
+
+\end{frame}
+\section{Premiers pas avec MySQL}
+ \begin{frame}{L'interface de commande}
+ \begin{itemize}
+     \item L'interface en ligne de commande se lance gr\^ace \`a l'ex\'ecutable mysql. Cette interface ressemble \`a une fen\^etre DOS ou Telnet et permet de dialoguer tr\`es simplement avec la base de donn\`ees.
+     \item l'utilisation peut \^etre interactive ou en mode batch
+     \item Il est possible d'ex\'ecuter des instructions SQL
+     \item Il est possible de compiler des proc\'edures catalogu\'ees et des d\'eclencheurs
+     \item Il est possible de r\'ealiser des t\^aches d'administration.
+     \item Le principe g\'en\'eral de l'interface est le suivant:
+     \newline Apr\`es une connexion locale ou distante, les instructions sont saisies et envoy\'ees \`a la base qui retourne des r\'esultats affich\'es dans la m\^eme fen\^etre de commande.
+ \end{itemize}
+     
+ \end{frame}
+ \begin{frame}{Connexion au serveur}
+ \begin{itemize}
+     \item Dans une fen\^etre d'invite de commande Windows, linux ou autre, lancez l'interface en ligne de commandes en connectant l'utilisateur root avec le mot de passe sp\'ecifi\'e lors de l'installation:
+     \newline mysql - -user=root  -p
+     \item Pour contr\^oler la version de votre serveur, ex\'ecutez la connexion-d\'econnexion suivante dans une fen\^etre de commande Linux ou Windows
+    \newline mysql - -version
+    
+ \end{itemize}
+ \end{frame}
+ \begin{frame}{Options de Base}
+ \begin{center}
+\begin{tabular}{|p{5cm}||p{5cm}|}
+\hline Option  &  Commentaires \\
+\hline - - help ou -?  &  Affiche les options disponibles, l'\'etat des variables d'environnement et rend la main   \\
+\cline{1-2}  - - batch ou - B  & Toute commande SQL peut \^etre lanc\'ee dans la fen\^etre de commande syst\`eme sans pour autant afficher l'invite.Les r\'esultats(colones sont s\'epar\'es par des tabulations  \\
+\hline - - database =nomBD ou -D nomBD  &  S\'election de la base de donn\'ees \`a utiliser apr`es la connexion\\
+\cline{1-2} - - host =nomSeveur ou -h nomServeur  & Désignation du serveur  \\
+\hline
+\end{tabular}
+\end{center}
+    
+ \end{frame}
+ \begin{frame}{Installation MySQL}
+ \begin{itemize}
+     \item Rendez vous sur le site http://www.mysql.com/douwloads, puis sélectionnez MySQL Community Server.
+     \item Sélectionnez votre plateforme(Windows, Mac Os et Linux
+     \item Apr\`es avoir accept\'e les termes de la licence ,choisir le r\'epertoire d'installation(par défaut Program Files\MySQL) et le type d'installation(par d\'efaut developper)
+     \item Ensuite un cycle de mise à jour des composants et de v\'erification despr\'erequiss'op\`ere, au cous de laquelle vous pouvez agir avant le r\'ecapitulatifs des produits qui seront install\'es .
+     \item pour finir installer wampserver pour ceux qui ont windows et Mamp pour Mac et Xamp pour linux
+     \end{itemize}
+     
+ \end{frame}
+ \begin{frame}{Installation MySQL}
+ \begin{itemize}
+     \item Connectez-vous sur l'ordinateur en tant qu'administrateur.Cela vous donnera les droits d'administrateur ,ce qui facilitera l'installation.Notez qu'une fois installé ,le programme n'a pas besoin d'être en mode administrateur pour fonctionner
+      \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall1.PNG}
+\end{figure}
+\end{itemize}
+\end{frame}
+     \begin{frame}
+         
+     \begin{itemize}
+     \item T\'el\'echarger gratuitement le serveur Mysql community Edition. Asurez-vous de télécharger une version comprenant une installation Windows. Sauvegardez le fichier sur le bureau. S i vous n'\^etes ps sure de la version à sélectionner, télécharger MySQL installer for windows.
+      \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.9\textwidth]{Captureinstall2.PNG}
+\end{figure}
+\end{itemize}
+\end{frame}
+\begin{frame}{Frame Title}
+    
+\begin{itemize}
+
+     \item Double-cliquez sur le fichier à télécharger. Le fichier d'installation vient sous un format zip donc double-cliquer deue devrait activr votre logiciel de décompresion et ouvrir un dossier d'archive
+      \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall.PNG}
+\end{figure}
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{itemize}
+    
+     \item Double-cliquez sur Setup.exe (il devrait être le seule fichier de votre archive) Cela initialisera le processus d'installation qui est en anglais
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall4.PNG}
+\end{figure}
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{itemize}
+    
+     \item Cliquez sur Next(suivant).Cela commencera l'installation
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstalle5.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+ \begin{frame}
+\begin{itemize}
+    
+     \item Cliquez sur Custum $\>$ Next(suivant).Cela vous permettra d'indiquer ou vous voulez installé dans C:\Server.Vous installerez MySQL dans le m\^eme r\'epertoire.Dans la fen\^etre suivante ,surlignez MySQL Server ,puis cliquer sur Change
+     Dans la fen\^etre suivante, dans la zone de texte Folder Name(nom du dossier), changez le répertoire à C:\Server\MySQL\ exactement comme c'est écrit ici puis cliquez sur OK
+     Sur la fen\être d'après cliquez sur Next.Maintenant MySQL est pr\^et à \^etre install\'e.
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall6.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+ \begin{frame}
+\begin{itemize}
+    
+     \item Cliquez sur Install.Patientez pendant l'installation
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall7.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+ 
+ \begin{frame}
+\begin{itemize}
+    
+     \item Cliquez sur Skip Sign-Up (passer l'enregitrement) puis sur Next. Une fois l'installation terminée ,une fen\être MYSQL Sign-Up appar\^itra. Vous n'\êtes ps oblig\'e de vous enregistrer de suite avec MySQL dans la mesure ou vous pouvez le faire ultérieurement si vous le souhaitez. Une fois que vous avez saut\'e cette \'etape, une fen\^etre devrait indiquer : Wizard Completed(fin de l'assistant)
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall9.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+ 
+ 
+ \begin{frame}
+\begin{itemize}
+    
+     \item Configurez MySQL. Laissez la case Configure the MySQL Server Now coch\'ee et cliquez sur finish(terminer)
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstalle10.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+ 
+ \begin{frame}
+\begin{itemize}
+    
+     \item Cliquez sur Next. Cela initialisera la mise en place de la configuration.
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall10.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+  \begin{frame}
+\begin{itemize}
+    
+     \item Cochez Standard Configuration (configuration classique) puis cliquez sur Next. C'est la configuration par d\'efaut qui est recommand\'ee pour la plupart des utilisateurs.
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall11.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+  \begin{frame}
+\begin{itemize}
+    
+     \item Assurez-vous d'installer en tant que service Windows et que la case launch the MySQL Server Automatically (lancez le serveur MySQL automatiquement soit cochée puis cliquez sur Next
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall12.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+  \begin{frame}
+\begin{itemize}
+    
+     \item Créez un mot de passe racine. Tapez le mot de passe choisi et assurez-vous que Enable root from remote machines (permettre l'accès de la racine \`a partir d'autres machines) soit coch\'e. Choisissez un mot de passe dificile à devinee et \'ecrivez-le pour ne pas l'oubliez. Cliquez sur Next.
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall13.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+  \begin{frame}
+\begin{itemize}
+    
+     \item Cliquez sur Executer. Cela d\'emarrera MySQL server.Après les mise en place faites sur MySQL, cliquez sur Finish.
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall14.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+  \begin{frame}
+\begin{itemize}
+    
+     \item A partir de la barre de taches Windows, allez sur Démarrer puis tous les programmes puis MySQL puis MySQL Server 4.x puis MySQL Command line client. Cela ouvrira une fen\^etr de commandes vous demandant un mot de passe
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall15.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+  \begin{frame}
+\begin{itemize}
+    
+     \item Entrez votre mot de passe racine et pressez Entr\'ee. Cela initialiera le programme
+           \begin{figure}[h]
+\centering	
+ \includegraphics[width=0.8\textwidth]{Captureinstall16.PNG}
+\end{figure}
+     \end{itemize}
+     
+ \end{frame}
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+\end{document}
+
